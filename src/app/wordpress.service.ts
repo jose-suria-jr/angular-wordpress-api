@@ -7,13 +7,18 @@ import { Observable } from 'rxjs';
 })
 export class WordpressService {
 
+  wpUrl:string = 'http://wp.services.mnljdvr102-w7d.risk.regn.net:8999/wp-json/wp/v2/posts?_embed';
+  wpPages:string = '6';
+
   constructor(private http: HttpClient) { }
 
   getPosts(): Observable<any[]> {
-    return this.http.get<any[]>('http://www.oxygenna.com/wp-json/wp/v2/posts?_embed', {
-      params: {
-        per_page: '6'
-      }
-    });
+    return this.http.get<any[]>(
+        this.wpUrl, 
+        {
+            params: {
+                per_page: this.wpPages
+            }
+        });
   }
 }
